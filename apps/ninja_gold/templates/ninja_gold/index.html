@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Ninja Gold</title>
+	<style type="text/css">
+		#farm, #cave, #house, #casino{
+			vertical-align: top;
+			display: inline-block;
+			background-color: lightblue;
+			width: 100px;
+			height: 100px;
+			text-align: center;
+			margin-bottom: 5px;
+		}
+		#view{
+			background-color: lightgreen;
+			width: 415px;
+			height: auto;
+			padding: 5px;
+			margin-top: 5px;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>Welcome!</h1>
+
+	<h2>Your Gold: {{request.session.money}}</h2>
+
+	<div id="farm">
+		<h3>Farm</h3>
+		<form action="/process_money/farm" method="post">
+			{% csrf_token %}
+		    <input type="submit" value="Find Gold!"/>
+	  	</form>
+  	</div>
+
+  	<div id="cave">
+  		<h3>Cave</h3>
+	  	<form action="/process_money/cave" method="post">
+	  		{% csrf_token %}
+		    <input type="submit" value="Find Gold!"/>
+	  	</form>
+  	</div>
+
+  	<div id="house">
+  		<h3>House</h3>
+	  	<form action="/process_money/house" method="post">
+	  		{% csrf_token %}
+		    <input type="submit" value="Find Gold!"/>
+	  	</form>
+  	</div>
+
+  	<div id="casino">
+  		<h3>Casino</h3>
+	  	<form action="/process_money/casino" method="post">
+	  		{% csrf_token %}
+		    <input type="submit" value="Find Gold!"/>
+  		</form>
+  	</div>
+
+  	<form action="/process_money/clear" method="post">
+	  		{% csrf_token %}
+		    <input type="submit" value="Clear"/>
+  	</form>
+
+  	<div id="view">
+  		<h2>Activities:</h2>
+  		{%for elem in request.session.activities %}
+			<p>{{elem}} </p>
+		{% endfor %}
+  	</div>
+
+</body>
+</html>
